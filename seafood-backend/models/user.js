@@ -3,20 +3,19 @@ const {
   Model
 } = require('sequelize');
 const useBcrypt = require('sequelize-bcrypt');
+const { info } = require('../core/logger.js');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
     validPassword = (password) => {
       return bcrypt.compareSync(password, this.password);
     }
 
     static associate(models) {
       // define association here
+      User.belongsTo(models.Company);
+      info("BLUE", "User assocations set");
     }
   };
   User.init({
@@ -47,6 +46,10 @@ module.exports = (sequelize, DataTypes) => {
     role: {
       type: DataTypes.STRING,
       defaultValue: "customer"
+    },
+    CompanyId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
     sequelize,

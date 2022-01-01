@@ -10,6 +10,6 @@ module.exports = class Logger {
     console.log(`${Colors[color]}%s\x1b[0m`, message);
   }
   static error = (message) => {
-    console.log(`${Colors[RED]}%s\x1b[0m`, message);
+    console.log(`${Colors["RED"]}%s\x1b[0m`, message);
   }
 }

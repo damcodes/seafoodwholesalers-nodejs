@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Company } = require('../models');
 const { info, error } = require('../core/logger.js');
 
 module.exports = class UsersController {
@@ -10,7 +10,8 @@ module.exports = class UsersController {
       let options = {
         attributes: {
           exclude: ['password', 'createdAt', 'updatedAt']
-        }
+        },
+        include: Company
       }
       let users = await User.findAll(options);
       return res.status(201).json({ users })
@@ -30,7 +31,8 @@ module.exports = class UsersController {
         },
         attributes: {
           exclude: ['password', 'createdAt', 'updatedAt']
-        }
+        },
+        include: Company
       }
       let user = await User.findOne(options);
       return res.status(201).json({ user })
@@ -53,7 +55,7 @@ module.exports = class UsersController {
       return res.status(201).json({ user });
     } catch (err) {
       error(`Users#create error: ${err.message}`);
-      return res.status(500).json({ error: err.message });ß
+      return res.status(500).json({ error: err.message });
     }
   }
 
@@ -67,7 +69,8 @@ module.exports = class UsersController {
         },
         attributes: {
           exclude: ['password', 'createdAt', 'updatedAt']
-        }
+        },
+        include: Company
       }
       let user = await User.findOne(options);
       await user.update(body, options);
@@ -96,7 +99,8 @@ module.exports = class UsersController {
       options = {
         attributes: {
           exclude: ['password', 'createdAt', 'updatedAt']
-        }
+        },
+        include: Company
       }
       let users = await User.findAll(options);
       return res.status(201).json({ users });
