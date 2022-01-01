@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "dam",
+    "password": "1234",
+    "database": "seafoodwholesalers-node",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "dam",
+    "password": "1234",
+    "database": "seafoodwholesalers-node",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "dam",
+    "password": "1234",
+    "database": "seafoodwholesalers-node",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
