@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Company.hasMany(models.User);
+      Company.belongsTo(models.Route);
       info("BLUE", "Company assocations set");
     }
   };
@@ -35,6 +36,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     latitude: {
       type: DataTypes.DECIMAL(10,8),
+      allowNull: false
+    },
+    RouteId: {
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {

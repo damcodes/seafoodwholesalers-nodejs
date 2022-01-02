@@ -1,12 +1,11 @@
 const { User, Company } = require('../models');
-const { info, error } = require('../core/logger.js');
+const { error } = require('../core/logger.js');
 
 module.exports = class UsersController {
 
   // GET /users
   static index = async (res) => {
     try {
-      info("GREEN", 'GET request for all users');
       let options = {
         attributes: {
           exclude: ['password', 'createdAt', 'updatedAt']
@@ -24,7 +23,6 @@ module.exports = class UsersController {
   // GET /users/id
   static show = async (id, res) => {
     try {
-      info("GREEN", `GET request for user with id: ${id}`);
       let options = {
         where: {
           id: id
@@ -45,7 +43,6 @@ module.exports = class UsersController {
   // POST /users
   static create = async (body, res) => {
     try {
-      info("GREEN", `POST request for new user: ${body.firstName} ${body.lastName}`);
       let options = {
         attributes: {
           exclude: ['password', 'createdAt', 'updatedAt']
@@ -62,7 +59,6 @@ module.exports = class UsersController {
   // PATCH /users/id
   static update = async (id, body, res) => {
     try {
-      info("GREEN", `PATCH request for user with id: ${id}`);
       let options = {
         where: {
           id: id
@@ -73,7 +69,7 @@ module.exports = class UsersController {
         include: Company
       }
       let user = await User.findOne(options);
-      await user.update(body, options);
+      await user.update(body, options); // must use User instance to avoid bulkInsert call from class method User.update so password will be hashed 
       user = await User.findOne(options);
       return res.status(201).json({ user });
     } catch(err) {
@@ -85,7 +81,6 @@ module.exports = class UsersController {
   // DELETE /users/id
   static destroy = async (id, res) => {
     try {
-      info("GREEN", `DELETE request for user with id: ${id}`);
       let options = {
         where: {
           id: id
