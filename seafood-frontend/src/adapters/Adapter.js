@@ -2,7 +2,7 @@ class Adapter {
 
     static fetch = async (method, endpoint, body) => {
         const auth = localStorage.getItem("auth_key");
-        const apiUrl = 'http://localhost:3001/';
+        const apiUrl = 'http://localhost:3001/api/';
         const headers = {
             "Content-type": "application/json",
             "Authorization": auth

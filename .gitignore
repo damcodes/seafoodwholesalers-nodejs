@@ -1,5 +1,7 @@
 /seafood-frontend/.eslintcache
+/seafood-frontend/node_modules
 /seafood-backend/node_modules
+/seafood-backend/.env
 .DS_Store
 .env
 .vscode
