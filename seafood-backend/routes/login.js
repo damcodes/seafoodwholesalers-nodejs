@@ -4,7 +4,6 @@ const LoginController = require('../controllers/login.js');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const { info } = require('../core/logger.js');
-const { route } = require('./users.js');
 
 router.post('/', jsonParser, async (req, res) => {
   let user = req.body.user;

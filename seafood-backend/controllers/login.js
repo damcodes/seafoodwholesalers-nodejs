@@ -10,7 +10,7 @@ module.exports = class LoginController {
       let { email, password } = user;
 
       if (!(email && password)) {
-        return res.status(400).json({ error: "Email AND password required" });
+        return res.status(401).json({ message: "Email AND password required" });
       }
 
       let options = {
