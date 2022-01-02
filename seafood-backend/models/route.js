@@ -7,7 +7,6 @@ const { info } = require('../core/logger.js');
 module.exports = (sequelize, DataTypes) => {
   class Route extends Model {
     static associate(models) {
-      // define association here
       Route.hasMany(models.Company);
       info("BLUE", "Route assocations set");
     }

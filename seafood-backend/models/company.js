@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
   class Company extends Model {
 
     static associate(models) {
-      // define association here
       Company.hasMany(models.User);
       Company.belongsTo(models.Route);
       info("BLUE", "Company assocations set");
