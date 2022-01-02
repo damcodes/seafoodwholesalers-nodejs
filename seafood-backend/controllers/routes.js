@@ -49,9 +49,7 @@ module.exports = class RoutesController {
   static update = async (id, body, res) => {
     try {
       let options = {
-        where: {
-          id: id
-        },
+        where: { id },
         include: Company
       };
       await Route.update(body, options);

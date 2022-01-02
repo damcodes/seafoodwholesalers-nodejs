@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       User.belongsTo(models.Company);
+      User.hasMany(models.Order);
       info("BLUE", "User assocations set");
     }
   };

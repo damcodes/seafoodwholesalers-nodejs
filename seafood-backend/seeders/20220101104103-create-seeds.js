@@ -1,5 +1,5 @@
 'use strict';
-const { Company, Route } = require('../models');
+const { Company, Route, User } = require('../models');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
@@ -106,6 +106,8 @@ module.exports = {
         lastName: "De Leon", 
         email: 'sdeleon@email.com', 
         password: hashedPass, 
+        role: "customer",
+        admin: false,
         CompanyId: f11.id,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -115,15 +117,37 @@ module.exports = {
         lastName: 'Cornelio', 
         email: 'lcornelio@email.com', 
         password: hashedPass, 
+        role: "customer",
+        admin: false,
         CompanyId: f9.id,
         createdAt: new Date(),
         updatedAt: new Date()
       }
     ]);
+
+    const steph = await User.findOne({
+      where: {
+        firstName: 'Stephanie',
+        lastName: 'De Leon'
+      }
+    });
+
+    await queryInterface.bulkInsert('Orders', [{
+      UserId: steph.id,
+      orderStatus: 'pending',
+      orderNumber: 646000,
+      orderTotal: 20.00,
+      RouteId: northRoute.id,
+      stop: 0,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }])
   },
 
   down: async (queryInterface, Sequelize) => {
     queryInterface.bulkDelete('Users', null);
     queryInterface.bulkDelete('Companies', null);
+    queryInterface.bulkDelete('Routes', null);
+    queryInterface.bulkDelete('Orders', null);
   }
 };

@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   class Route extends Model {
     static associate(models) {
       Route.hasMany(models.Company);
+      Route.hasMany(models.Order);
       info("BLUE", "Route assocations set");
     }
   };
