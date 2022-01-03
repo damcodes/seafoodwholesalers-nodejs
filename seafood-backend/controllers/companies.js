@@ -10,7 +10,7 @@ module.exports = class CompaniesController {
         include: User
       };
       let companies = await Company.findAll(options);
-      return res.status(201).json({ companies })
+      return res.status(201).json(companies)
     } catch(err) {
       error(`Companies#index error: ${err.message}`);
       return res.status(500).json({ error: err.message });
@@ -27,7 +27,7 @@ module.exports = class CompaniesController {
         include: User
       }
       let company = await Company.findOne(options);
-      return res.status(201).json({ company })
+      return res.status(201).json(company)
     } catch(err) {
       error(`Companies#show error: ${err.message}`);
       return res.status(500).json({ error: err.message });
@@ -38,7 +38,7 @@ module.exports = class CompaniesController {
   static create = async (body, res) => {
     try {
       let company = await Company.create(body);
-      return res.status(201).json({ company });
+      return res.status(201).json(company);
     } catch(err) {
       error(`Companies#create error: ${err.message}`);
       return res.status(500).json({ error: err.message });
@@ -56,7 +56,7 @@ module.exports = class CompaniesController {
       }
       await Company.update(body, options);
       let company = await Company.findOne(options);
-      return res.status(201).json({ company });
+      return res.status(201).json(company);
     } catch(err) {
       error(`Companies#update error: ${err.message}`);
       return res.status(500).json({ error: err.message });
@@ -74,7 +74,7 @@ module.exports = class CompaniesController {
       let company = await Company.findOne(options);
       await company.destroy(options);
       let companies = await Company.findAll({ include: User });
-      return res.status(201).json({ companies });
+      return res.status(201).json(companies);
     } catch(err) {
       error(`Companies#destroy error: ${err.message}`);
       return res.status(500).json({ error: err.message });

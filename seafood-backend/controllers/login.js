@@ -21,7 +21,8 @@ module.exports = class LoginController {
       };
       let confirmedUser = await User.findOne(options);
       if (confirmedUser && await confirmedUser.authenticate(password)) {
-        let token = jwt.sign({userId: user.id}, 'aPP-s3cr3t');
+        let payload = {id: confirmedUser.id, email: confirmedUser.email};
+        let token = jwt.sign(payload, 'aPP-s3cr3t', {noTimestamp: true});
         return res.status(201).json({ jwt: token, user: confirmedUser})
       } else {
         return res.status(401).json({ message: "Incorrect email or password" });

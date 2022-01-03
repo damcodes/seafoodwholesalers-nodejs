@@ -21,7 +21,7 @@ function Profile() {
         const getUser = async () => {
             let user = await Adapter.fetch("GET", "current-user");
             setUser(user);
-            setOrders(user.orders);
+            setOrders(user.Orders);
         }
         getUser();
     }, [])
@@ -29,6 +29,7 @@ function Profile() {
     useEffect(() => {
         const getOrders = async () => {
             let orders = await Adapter.fetch("GET", "orders");
+            debugger
             setOrders(orders);
         }
         getOrders();
@@ -117,7 +118,7 @@ function Profile() {
                         <Grid.Column>
                             <Segment textAlign='center'>
                                 <Header as='h2' textAlign='center'>Pending Orders</Header>
-                                <PendingOrders currentUser={currentUser} orders={orders.filter(order => order.order_status === 'pending' && order.user_id === currentUser.id)} />
+                                <PendingOrders currentUser={currentUser} orders={orders.filter(order => order.orderStatus === 'pending' && order.UserId === currentUser.id)} />
                             </Segment>
                         </Grid.Column>
 

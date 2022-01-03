@@ -10,7 +10,7 @@ module.exports = class RoutesController {
         include: Company
       };
       const routes = await Route.findAll(options);
-      return res.status(201).json({ routes })
+      return res.status(201).json(routes)
     } catch(err) {
       error(`Routes#index error: ${err.message}`)
       return res.status(500).json({ error: err.message });
@@ -27,7 +27,7 @@ module.exports = class RoutesController {
         include: Company
       };
       let route = await Route.findOne(options);
-      return res.status(201).json({ route });
+      return res.status(201).json(route);
     } catch(err) {
       error(`Routes#show error: ${err.message}`)
       return res.status(500).json({ err: err.message });
@@ -38,7 +38,7 @@ module.exports = class RoutesController {
   static create = async (body, res) => {
     try {
       let route = await Route.create(body);
-      return res.status(201).json({ route });
+      return res.status(201).json(oute);
     } catch(err) {
       error(`Routes#create error: ${err.message}`);
       return res.status(500).json({ error: err.message });
@@ -54,7 +54,7 @@ module.exports = class RoutesController {
       };
       await Route.update(body, options);
       let route = await Route.findOne(options);
-      return res.status(201).json({ route });
+      return res.status(201).json(route);
     } catch(err) {
       error(`Routes#update error: ${err.message}`);
       return res.status(500).json({ error: err.message });
@@ -71,7 +71,7 @@ module.exports = class RoutesController {
       };
       await Route.destroy(options);
       let routes = await Route.findAll({ include: Company });
-      return res.status(201).json({ routes });
+      return res.status(201).json(routes);
     } catch(err) {
       error(`Routes#destroy error: ${err.messasge}`);
       return res.status(500).json({ error: err.message });

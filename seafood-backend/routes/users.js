@@ -12,12 +12,26 @@ router.get('/', async (req, res) => {
   info("GREEN", 'Finish GET request for all users');
 })
 
+// GET /users/current-user
+router.get('/current-user', async (req, res) => {
+  info("GREEN", "Start GET request for current user");
+  await UsersController.currentUser(req, res);
+  info("GREEN", "Finish GET request for current user");
+})
+
 // GET /users/id
 router.get('/:id', async (req, res) => {
   let id = req.params.id;
   info("GREEN", `Start GET request for user with id: ${id}`);
-  UsersController.show(id, res);
+  await UsersController.show(id, res);
   info("GREEN", `Finish GET request for user with id: ${id}`);
+})
+
+// GET /users/current-user
+router.get('/current-user', async (req, res) => {
+  info("GREEN", "Start GET request for current user");
+  await UsersController.currentUser(req, res);
+  info("GREEN", "Finish GET request for current user");
 })
 
 // POST /users

@@ -8,7 +8,7 @@ module.exports = class OrdersController {
     try {
       let options = { include: [User, Route] };
       let orders = await Order.findAll(options);
-      return res.status(201).json({ orders });
+      return res.status(201).json(orders);
     } catch(err) {
       return res.status(500).json({ error: err.message });
     }
@@ -22,7 +22,7 @@ module.exports = class OrdersController {
         include: [User, Route]
       };
       let order = await Order.findOne(options);
-      return res.status(201).json({ order });
+      return res.status(201).json(order);
     } catch(err) {
       return res.status(500).json({ error: err.message });
     }
@@ -32,7 +32,7 @@ module.exports = class OrdersController {
   static create = async (body, res) => {
     try {
       let order = await Order.create(body, options);
-      return res.status(201).json({ order });
+      return res.status(201).json(order);
     } catch(err) {
       return res.status(500).json({ error: err.message });
     }
@@ -47,7 +47,7 @@ module.exports = class OrdersController {
       };
       await Order.update(body, options);
       let order = Order.findOne(options);
-      return res.status(201).json({ order });
+      return res.status(201).json(order);
     } catch(err) {
       return res.status(500).json({ error: err.message });
     }
@@ -61,7 +61,7 @@ module.exports = class OrdersController {
       };
       await Order.destroy(options);
       let orders = await Order.findAll({ include: [User, Route] });
-      return res.status(201).json({ orders });
+      return res.status(201).json(orders);
     } catch(err) {
       return res.status(500).json({ error: err.message });
     }
